@@ -14,10 +14,7 @@ from torchtext.data import Field, TabularDataset, Iterator, BucketIterator
 class CNN_1d(nn.Module):
     def __init__(self, embed_dim, num_classes, num_kernels, kernel_size_list, dropout_prob, vocab):
         super(CNN_1d, self).__init__()
-        vectors = vocab.vectors
-        self.embed = nn.Embedding(vectors.shape[0], vectors.shape[1])
-        self.embed.weight.data.copy_(vectors)
-        self.embed.weight.requires_grad=True
+        self.embed = nn.Embedding(len(vocab), 300)
         self.convs = nn.ModuleList([nn.Conv2d(1, num_kernels, (k, embed_dim)) for k in kernel_size_list])
         self.dropout = nn.Dropout(dropout_prob)
         self.fc = nn.Linear(len(kernel_size_list)*num_kernels, num_classes, )
@@ -148,7 +145,7 @@ test = TabularDataset(
            skip_header=True, 
            fields=tv_datafields)
 
-TEXT.build_vocab(train, vectors = "fasttext.en.300d")
+TEXT.build_vocab(train)
 
 vocab = TEXT.vocab
 train_iter, val_iter = BucketIterator.splits(
