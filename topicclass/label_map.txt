@@ -1,0 +1,16 @@
+Social sciences and society|1
+Media and drama|2
+History|3
+Music|4
+Language and literature|5
+Video games|6
+Warfare|7
+Engineering and technology|8
+Sports and recreation|9
+Natural sciences|10
+Geography and places|11
+Art and architecture|12
+Philosophy and religion|13
+Agriculture, food and drink|14
+Miscellaneous|15
+Mathematics|16
